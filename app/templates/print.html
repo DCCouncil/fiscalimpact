@@ -19,7 +19,7 @@ div.header {
 {% endblock %}
 {% block content %}
 <div class="header"><img src="https://legalsuff.herokuapp.com/static/img/dcseal.jpg" style="max-height:1in;"></div>
-{% if perms.app.legal_sufficiency_can_publish %}
+{% if perms.app._can_publish %}
 <style>
 @media screen {
     div#sig {
@@ -33,13 +33,22 @@ div.header {
 {% endif %}
 <h1>Memorandum</h1>
 <div id="front_matter">
-<p>TO: {{sufficiency.get_office_display}}</p>
-<p>FROM: V. David Zvenyach, General Counsel</p>
-<p>DATE: {{sufficiency.publish_date|date:"F d, Y"}}</p>
-<p>RE: Legal Sufficiency Determination for {{sufficiency.get_title}}.</p>
+<p>TO: Chairman Phil Mendelson</p>
+<p>FROM: Jen Budoff, Budget Director</p>
+<p>DATE: {{document.publish_date|date:"F d, Y"}}</p>
+<p>RE: Legal Sufficiency Determination for {{document.get_title}}.</p>
+<p>REQUESTING OFFICE: {{document.get_office_display}}</p>
+<p>
 </div>
 
-{{sufficiency.content|safe}}
+<h1>Conclusion</h1>
+{{document.content_conclusion|safe}}
+<h1>Background</h1>
+{{document.content_background|safe}}
+<h1>Conclusion</h1>
+{{document.content_revenue|safe}}
+<h1>Conclusion</h1>
+{{document.content_spending|safe}}
 
 </div>
 {% endblock %}

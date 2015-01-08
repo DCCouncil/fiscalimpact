@@ -1,7 +1,7 @@
 from django.test import TestCase
 
 # Create your tests here.
-from app.models import LegalSufficiency as ls
+from app.models import Document as ls
 
 class TestSufficiencies(TestCase):
     fixtures = ['lsds.yaml']

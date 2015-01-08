@@ -1,12 +1,12 @@
 from django import forms
-from app.models import LegalSufficiency
+from app.models import Document
 
-class LegalSufficiencyForm(forms.ModelForm):
+class DocumentForm(forms.ModelForm):
     CHOICES = [('draft','Draft'), ('review','Review')]
     # status = forms.CharField(max_length=10, widget=forms.Select(choices=CHOICES))
     class Meta:
-        model = LegalSufficiency
-        exclude = ['id','attorney','publish_date', 'slug']
+        model = Document
+        exclude = ['id','employee','publish_date', 'slug']
 
         widgets = {
             'amendment_number': forms.TextInput(attrs={'class': 'hidden'}),

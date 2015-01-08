@@ -1,7 +1,7 @@
 from django.contrib import admin
-from app.models import LegalSufficiency
+from app.models import Document
 import reversion
 
-@admin.register(LegalSufficiency)
-class LegalSufficiencyAdmin(reversion.VersionAdmin):
+@admin.register(Document)
+class DocumentAdmin(reversion.VersionAdmin):
     pass

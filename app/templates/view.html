@@ -6,15 +6,15 @@
 
 
 {% block content %}
-<h1>Legal Sufficiencies</h1>
+<h1>Fiscal Impact Statements</h1>
 <div class="grid-1">
-    <div class="span-1"><h2>Approved Legal Sufficiency Determinations</h2>
+    <div class="span-1"><h2>Approved Fiscal Impact Statements</h2>
     <table id="approved" class="flakes-table">
     <thead>
     <tr><td>Measure</td><td>Short Title</td><td>Publication Date</td></tr>
     </thead>
     <tbody>
-    {% for suff in sufficiencies %}
+    {% for suff in documents %}
         <tr><td><a href="{{suff.get_public_url}}">{{suff.measure_type}}{{suff.measure_number}}</a></td><td>{{suff.short_title}}</td><td>{{suff.publish_date}}</td></tr>
     {% endfor %}
     </tbody>

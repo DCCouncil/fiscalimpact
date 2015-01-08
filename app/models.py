@@ -15,24 +15,27 @@ m_type = [('B','Bill'),('PR','Proposed Resolution')]
 members = [('PM','Chairman Phil Mendelson'),('BN','Councilmember Brianne Nadeau'), ('JE','Councilmember Jack Evans'),('MC','Councilmember Mary Cheh'),('KM','Councilmember Kenyan McDuffie'),('CA','Councilmember Charles Allen'),('YA','Councilmember Yvette Alexander'),('VO','Councilmember Vincent Orange'),('AB','Councilmember Anita Bonds'),('DG','Councilmember David Grosso'),('ES','Councilmember Elissa Silverman')]
 
 @reversion.register
-class LegalSufficiency(models.Model):
+class Document(models.Model):
     slug = models.SlugField(default=uuid.uuid4, primary_key=True)
     office = models.CharField(max_length=400, choices=members, default='pm')
-    attorney = models.ForeignKey(User, blank=True, null=True)
+    employee = models.ForeignKey(User, blank=True, null=True)
     measure_type = models.CharField(max_length=5, choices=m_type, default='B')
     measure_number = models.CharField(max_length=64, null=True, blank=True)
     short_title = models.CharField(max_length=300, null=True, blank=True)
     amendment = models.BooleanField(default=False)
     amendment_number = models.PositiveSmallIntegerField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=published, default='draft')
-    content = RedactorField(verbose_name=u'Content')
+    content_conclusion = RedactorField(verbose_name=u'Conclusion', default="", blank=True,null=True)
+    content_background = RedactorField(verbose_name=u'Background',default="",blank=True,null=True)
+    content_revenue = RedactorField(verbose_name=u'Analysis of Impact on Revenue',default="", blank=True,null=True)
+    content_spending = RedactorField(verbose_name=u'Analysis of Impact on Spending',default="",blank=True,null=True)
     publish_date = models.DateField(blank=True, null=True)
 
     def __str__(self):
         return '%s%s: %s' % (self.measure_type, self.measure_number, self.short_title)
 
     def get_absolute_url(self):
-        return '/suff/%s' % self.slug
+        return '/document/%s' % self.slug
 
     def get_public_url(self):
         return '/view/%s' % self.slug
@@ -55,7 +58,7 @@ class LegalSufficiency(models.Model):
 
     class Meta:
         permissions = ( 
-            ( "can_publish", "Can Publish LSDs" ),
+            ( "can_publish", "Can Publish" ),
         )
 
     # @receiver(pre_save)

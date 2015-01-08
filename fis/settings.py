@@ -54,9 +54,9 @@ MIDDLEWARE_CLASSES = (
     # 'reversion.middleware.RevisionMiddleware',
 )
 
-ROOT_URLCONF = 'legalsuff.urls'
+ROOT_URLCONF = 'fis.urls'
 
-WSGI_APPLICATION = 'legalsuff.wsgi.application'
+WSGI_APPLICATION = 'fis.wsgi.application'
 
 
 # Database
