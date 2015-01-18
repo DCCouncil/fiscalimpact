@@ -6,7 +6,7 @@
 {% endif %}
 <fieldset><legend>Fiscal Impact Statement</legend><form method="POST">
 {% csrf_token %}
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script> 
+<!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>  -->
 {{ form.media }}
 {{ form.as_p }}
 <button type="submit" class="button-green">Submit</button>
@@ -21,10 +21,16 @@ $( document ).ready(function() {
     $('label[for="id_amendment_number"]').hide();
 });
 
-
-$('#id_amendment').change(function(){
-    $('#id_amendment_number').toggle(this.checked);
-    $('label[for="id_amendment_number"]').toggle(this.checked);
+$('#id_fis_type').change(function(){
+    if ($('#id_fis_type').val() == "Am") {
+        $('#id_amendment_number').show();
+        $('label[for="id_amendment_number"]').show();
+    }
+    else {
+        $('#id_amendment_number').hide();
+        $('label[for="id_amendment_number"]').hide();        
+    }
 });
+
 </script>
 {% endblock %}

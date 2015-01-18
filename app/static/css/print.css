@@ -1,30 +1,33 @@
 @page {
 	size: 8.5in 11in;
-	margin-left: 1.5in;
-	margin-right: 1.5in;
-	margin-top: 0.5in;
+	margin-left: 1in;
+	margin-right: 1in;
+	margin-top: 0.25in;
 	margin-bottom: 1in;
 
-	@top-left {
-	    content: "Hamlet";
-	}
 }
 
 body {
 	font-size: 12px;
-	font-family: "Century Schoolbook";
+	line-height: 110%;
+	font-family: "Times New Roman";
 	max-width: 5.5in;
 }
 
 #front_matter {
 	font-weight: bold;
 	border-bottom: solid 1px;
+	line-height: 80%;
 }
 
 h1 {
 	font-size: 12px;
 	text-transform: uppercase;
 	text-decoration: underline;
+}
+
+h3 {
+	font-size: 12px;
 }
 
 div.page {
@@ -36,4 +39,8 @@ div.page {
 }
 .flakes-frame .flakes-content .flakes-mobile-top-bar {
 	border-bottom-width: 0;
+}
+
+.letterhead {
+	line-height: 150%;
 }

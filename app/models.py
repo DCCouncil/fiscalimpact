@@ -11,7 +11,7 @@ import reversion
 
 published = [('draft','Draft'), ('review','Review'),('published','Published')]
 m_type = [('B','Bill'),('PR','Proposed Resolution')]
-
+fis_type = [("E","Emergency"),("Am", "Amendment"), ("ANS", "Amendment in the Nature of a Substitute"),("A","Act"), ("R","Resolution")]
 members = [('PM','Chairman Phil Mendelson'),('BN','Councilmember Brianne Nadeau'), ('JE','Councilmember Jack Evans'),('MC','Councilmember Mary Cheh'),('KM','Councilmember Kenyan McDuffie'),('CA','Councilmember Charles Allen'),('YA','Councilmember Yvette Alexander'),('VO','Councilmember Vincent Orange'),('AB','Councilmember Anita Bonds'),('DG','Councilmember David Grosso'),('ES','Councilmember Elissa Silverman')]
 
 @reversion.register
@@ -22,7 +22,8 @@ class Document(models.Model):
     measure_type = models.CharField(max_length=5, choices=m_type, default='B')
     measure_number = models.CharField(max_length=64, null=True, blank=True)
     short_title = models.CharField(max_length=300, null=True, blank=True)
-    amendment = models.BooleanField(default=False)
+    fis_type = models.CharField(max_length=5, choices=fis_type, default='E')
+    # amendment = models.BooleanField(default=False)
     amendment_number = models.PositiveSmallIntegerField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=published, default='draft')
     content_conclusion = RedactorField(verbose_name=u'Conclusion', default="", blank=True,null=True)
@@ -45,13 +46,13 @@ class Document(models.Model):
         self.status = 'published'
 
     def get_title(self):
-        if self.measure_number != None and self.amendment and self.amendment_number != None:
+        if self.measure_number != None and self.amendment_number != None:
             return 'Amendment #%s to %s %s, the %s' % (self.amendment_number, self.get_measure_type_display(), self.measure_number, self.short_title)
-        elif self.measure_number != None and self.amendment:
+        elif self.measure_number != None and self.fis_type == "Am":
             return 'Amendment to %s %s, the %s' % (self.get_measure_type_display(), self.measure_number, self.short_title)
         elif self.measure_number != None:
             return '%s %s, the %s' % (self.get_measure_type_display(), self.measure_number, self.short_title)
-        elif self.amendment:
+        elif self.fis_type == "Am":
             return 'Amendment to the %s' % (self.short_title)
         else: 
             return 'the %s' % (self.short_title)

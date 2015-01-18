@@ -24,7 +24,7 @@ DEBUG = False
 
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['legalsuff.herokuapp.com']
+ALLOWED_HOSTS = ['fiscalimpact.herokuapp.com']
 
 
 # Application definition

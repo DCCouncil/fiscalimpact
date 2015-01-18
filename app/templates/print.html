@@ -10,6 +10,12 @@ div.header {
     text-align: center;
 }
 
+div.letterhead {
+    margin: 0 auto;
+    text-align: center;
+}
+
+
 #front_matter {
     font-weight: bold;
     border-bottom: solid 1px;
@@ -18,36 +24,41 @@ div.header {
 </style>
 {% endblock %}
 {% block content %}
-<div class="header"><img src="https://legalsuff.herokuapp.com/static/img/dcseal.jpg" style="max-height:1in;"></div>
-{% if perms.app._can_publish %}
+<div class="letterhead">
+<h2><p>COUNCIL OF THE DISTRICT OF COLUMBIA<br>Office of the Budget Director</h2>
+</div>
+<div class="header"><img src="https://legalsuff.herokuapp.com/static/img/dcseal.jpg" style="max-height:0.75in;"></div>
+{% if perms.app.can_publish %}
 <style>
 @media screen {
     div#sig {
         display: none;
     }
 }
+
 </style>
 <div id="sig">
 <img src="{{stamp_url}}" style="position:absolute; top:2in; left:3.5in; width:1.5in">
 </div>
 {% endif %}
-<h1>Memorandum</h1>
+<p><strong>Jennifer Budoff</strong><br>Budget Director</p>
+<p style="text-decoration: underline;"><strong>FISCAL IMPACT STATEMENT</strong></span></p>
 <div id="front_matter">
-<p>TO: Chairman Phil Mendelson</p>
-<p>FROM: Jen Budoff, Budget Director</p>
+<p>TO: The Honorable Phil Mendelson, Chairman, Council of the District of Columbia</p>
+<p>FROM: Jennifer Budoff, Budget Director</p>
 <p>DATE: {{document.publish_date|date:"F d, Y"}}</p>
-<p>RE: Legal Sufficiency Determination for {{document.get_title}}.</p>
+<p>SHORT TITLE: The {{document.get_title}}.</p>
+<p>TYPE: {{document.get_fis_type_display}}</p>
 <p>REQUESTING OFFICE: {{document.get_office_display}}</p>
-<p>
 </div>
 
-<h1>Conclusion</h1>
+<h3>Conclusion</h3>
 {{document.content_conclusion|safe}}
-<h1>Background</h1>
+<h3>Background</h3>
 {{document.content_background|safe}}
-<h1>Conclusion</h1>
+<h3>Analysis of Impact on Revenue</h3>
 {{document.content_revenue|safe}}
-<h1>Conclusion</h1>
+<h3>Analysis of Impact on Spending</h3>
 {{document.content_spending|safe}}
 
 </div>

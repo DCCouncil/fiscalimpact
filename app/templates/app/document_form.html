@@ -20,9 +20,15 @@ $( document ).ready(function() {
     $("#id_amendment_number").hide()
     $('label[for="id_amendment_number"]').hide();
 });
-$('#id_amendment').change(function(){
-    $('#id_amendment_number').toggle(this.checked);
-    $('label[for="id_amendment_number"]').toggle(this.checked);
-});
+$('#id_fis_type').change(function(){
+    if ($('#id_fis_type').val() == "Am") {
+        $('#id_amendment_number').show();
+        $('label[for="id_amendment_number"]').show();
+    }
+    else {
+        $('#id_amendment_number').hide();
+        $('label[for="id_amendment_number"]').hide();        
+    }
+})
 </script>
 {% endblock %}
