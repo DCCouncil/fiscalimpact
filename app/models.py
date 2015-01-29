@@ -46,16 +46,17 @@ class Document(models.Model):
         self.status = 'published'
 
     def get_title(self):
-        if self.measure_number != None and self.amendment_number != None:
-            return 'Amendment #%s to %s %s, the %s' % (self.amendment_number, self.get_measure_type_display(), self.measure_number, self.short_title)
-        elif self.measure_number != None and self.fis_type == "Am":
-            return 'Amendment to %s %s, the %s' % (self.get_measure_type_display(), self.measure_number, self.short_title)
-        elif self.measure_number != None:
-            return '%s %s, the %s' % (self.get_measure_type_display(), self.measure_number, self.short_title)
-        elif self.fis_type == "Am":
-            return 'Amendment to the %s' % (self.short_title)
-        else: 
-            return 'the %s' % (self.short_title)
+        # if self.measure_number != None and self.amendment_number != None:
+        #     return 'Amendment #%s to %s %s, the %s' % (self.amendment_number, self.get_measure_type_display(), self.measure_number, self.short_title)
+        # elif self.measure_number != None and self.fis_type == "Am":
+        #     return 'Amendment to %s %s, the %s' % (self.get_measure_type_display(), self.measure_number, self.short_title)
+        # elif self.measure_number != None:
+        #     return '%s %s, the %s' % (self.get_measure_type_display(), self.measure_number, self.short_title)
+        # elif self.fis_type == "Am":
+        #     return 'Amendment to the %s' % (self.short_title)
+        # else: 
+        #     return 'the %s' % (self.short_title)
+        return self.short_title
 
     class Meta:
         permissions = ( 
