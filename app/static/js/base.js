@@ -82,7 +82,7 @@ var FlakesFrame = {
 		});
 	},
 	events: function() {
-		this.equalizeHeights();
+		// this.equalizeHeights();
 		this.setupSnaping();
 	}
 }
