@@ -26,7 +26,6 @@ TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['fiscalimpact.herokuapp.com']
 
-
 # Application definition
 
 INSTALLED_APPS = (

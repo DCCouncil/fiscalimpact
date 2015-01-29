@@ -20,6 +20,32 @@ def home(request):
     final = query.filter(status='published').order_by('-publish_date')[:5]
     return render(request,'home.html', {'draft':in_draft, 'pending':pending, 'final':final})
 
+from django.contrib.syndication.views import Feed
+from django.core.urlresolvers import reverse
+from django.utils.feedgenerator import Rss201rev2Feed
+
+class LatestEntriesFeed(Feed):
+    title = "Fiscal Impact Statements -- Council of the District of Columbia"
+    link = "https://fiscalimpact.herokuapp.com/"
+    description = "Fiscal Impact Statements for the Council of the District of Columbia."
+
+    feed_type = Rss201rev2Feed
+
+    def items(self):
+        return Document.objects.order_by('-publish_date')[:20]
+
+    def item_title(self, item):
+        return item.short_title
+
+    def item_description(self, item):
+        return item.content
+
+    # item_link is only needed if NewsItem has no get_absolute_url method.
+    def item_link(self, item):
+        return item.get_public_url()
+
+
+
 ###
 # Create a new Document
 ###

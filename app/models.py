@@ -24,7 +24,7 @@ class Document(models.Model):
     short_title = models.CharField(max_length=300, null=True, blank=True)
     fis_type = models.CharField(max_length=5, choices=fis_type, default='E')
     # amendment = models.BooleanField(default=False)
-    amendment_number = models.PositiveSmallIntegerField(null=True, blank=True)
+    # amendment_number = models.PositiveSmallIntegerField(null=True, blank=True)
     status = models.CharField(max_length=10, choices=published, default='draft')
     content_conclusion = RedactorField(verbose_name=u'Conclusion', default="", blank=True,null=True)
     content_background = RedactorField(verbose_name=u'Background',default="",blank=True,null=True)
