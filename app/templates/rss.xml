@@ -1,0 +1,23 @@
+<rss version="2.0">
+<channel>
+<title>Legal Sufficiencies -- Council of the District of Columbia</title>
+<link>https://legalsuff.herokuapp.com/</link>
+<description>Legal Sufficiency Determinations for the Council of the District of Columbia</description>
+<language>en-us</language>
+{% for document in documents %}
+<item>
+<title>{{document.get_title}}</title>
+<link>
+{{document.get_public_url}}
+</link>
+<description>
+{{document.content}}
+</description>
+<pubDate>{{document.publish_date}}</pubDate>
+<guid>
+{{document.get_public_url}}
+</guid>
+</item>
+{% endfor %}
+</channel>
+</rss>
