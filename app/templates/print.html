@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+
+{% block title %}{{document.get_title}} -- FIS{% endblock %}
+
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/print.css' %}" type="text/css" media="print" />
 <style type="text/css">
@@ -52,7 +55,7 @@ p {
 <p>TO: The Honorable Phil Mendelson, Chairman, Council of the District of Columbia</p>
 <p>FROM: Jennifer Budoff, Budget Director</p>
 <p>DATE: {{document.publish_date|date:"F d, Y"}}</p>
-<p>SHORT TITLE: The {{document.get_title}}.</p>
+<p>SHORT TITLE: The {{document.get_title}}</p>
 <p>TYPE: {{document.get_fis_type_display}}</p>
 <p>REQUESTING OFFICE: {{document.get_office_display}}</p>
 </div>
