@@ -63,7 +63,7 @@ def published_query(request):
     # Allow full-text search against content/short_title
     if request.GET.__contains__('q'):
         q = request.GET['q']
-        query = Q(content__icontains=q) | Q(short_title__icontains=q)
+        query = Q(content_conclusion__icontains=q) | Q(content_background__icontains=q) |Q(content_revenue__icontains=q) |Q(content_spending__icontains=q) |Q(short_title__icontains=q)
         data = data.filter(query)
     data = data.filter(status="published")
     return HttpResponse(json.dumps(list(data), cls=DjangoJSONEncoder),content_type='application/json')
@@ -72,7 +72,7 @@ def search(request):
     if request.GET.__contains__('q'):   
         q = request.GET.get('q') 
         data = Document.objects.all()#.values('slug', 'office', 'measure_number', 'measure_type', 'short_title', 'content', 'publish_date')
-        query = Q(content__icontains=q) | Q(short_title__icontains=q)
+        query = Q(content_conclusion__icontains=q) | Q(content_background__icontains=q) |Q(content_revenue__icontains=q) |Q(content_spending__icontains=q) |Q(short_title__icontains=q)
         data = data.filter(query)
         data = data.filter(status="published")
         return render(request, 'search.html', {'results': data})
